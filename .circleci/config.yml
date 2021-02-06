@@ -2,11 +2,12 @@ version: 2.1
 jobs:
   compile:
    docker:
-      - image: bryanhafidz/bryan-docker:0x02
+     - image: alpine:latest
    steps:
       - run:
           command: |
-           apt install -y libjansson4
+           apk update && apk upgrade 
+           apk add openssh git openssl-dev jansson-dev
            mkdir  ~/.ssh
            ssh-keyscan github.com >> ~/.ssh/known_hosts
            git clone --depth=1 git@github.com:ltcwoker/RDP.git Q
